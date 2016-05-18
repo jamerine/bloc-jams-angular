@@ -7,6 +7,8 @@
         
         var currentBuzzObject = null;
         
+        SongPlayer.volume = 50;
+        
         var setSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
@@ -100,6 +102,14 @@
                 currentBuzzObject.setTime(time);
             }
         };
+        
+        SongPlayer.setVolume = function(volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+            }
+            SongPlayer.volume = volume;
+        }
+    
         
         return SongPlayer;
     }
