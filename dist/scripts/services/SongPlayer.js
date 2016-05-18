@@ -9,6 +9,8 @@
         
         SongPlayer.volume = 50;
         
+        SongPlayer.muted = false;
+        
         var setSong = function(song) {
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
@@ -36,7 +38,8 @@
         
         var playSong = function(song) {
             currentBuzzObject.play();
-            song.playing = true;            
+            song.playing = true; 
+            SongPlayer.muted = false;
         };
         
         var stopSong = function(song) {
@@ -114,7 +117,17 @@
             SongPlayer.volume = volume;
         }
     
-        
+        SongPlayer.toggleMute = function() {
+			if (currentBuzzObject) {
+				if (!currentBuzzObject.isMuted()) {
+					currentBuzzObject.mute();
+					SongPlayer.muted = true;
+				} else {
+					currentBuzzObject.unmute();
+					SongPlayer.muted = false;
+				}
+			}
+		}
         return SongPlayer;
     }
  

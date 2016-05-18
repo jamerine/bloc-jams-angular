@@ -20,7 +20,7 @@
          </div>
          <div class="control-group currently-playing" >
              <h2 class="song-name" ng-show="playerBar.songPlayer.currentSong.playing">{{ playerBar.songPlayer.currentSong.title }}</h2>
-             <h2 class="artist-song-mobile"></h2>
+             <h2 class="artist-song-mobile">{{ playerBar.songPlayer.currentSong.name }} - {{ playerBar.albumData.artist }}</h2>
              <h3 class="artist-name" ng-show="playerBar.songPlayer.currentSong.playing">{{ playerBar.albumData.artist  }}</h3>
              <div class="seek-control">
                    <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
@@ -29,8 +29,15 @@
              </div>
          </div>
          <div class="control-group volume">
-             <span class="icon ion-volume-high"></span>
-             <seek-bar value="{{ playerBar.songPlayer.volume }}" max="100" on-change="playerBar.songPlayer.setVolume(value)"></seek-bar>
+             <span class="icon ion-volume-high"
+						ng-show="!playerBar.songPlayer.muted" 
+						ng-click="playerBar.songPlayer.toggleMute()"></span>
+			<span class="icon ion-volume-mute"
+						ng-show="playerBar.songPlayer.muted"
+						ng-click="playerBar.songPlayer.toggleMute()"></span>
+			<seek-bar value="{{ playerBar.songPlayer.volume }}" 
+								max=100
+								on-change="playerBar.songPlayer.setVolume(value)"></seek-bar>
          </div>
      </div>
  </section>
